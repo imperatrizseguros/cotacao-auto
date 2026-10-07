@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cotação Seguro Auto · Imperatriz Seguros</title>
+<meta name="description" content="Preencha os dados e receba sua cotação de seguro auto pelo WhatsApp. Imperatriz Corretora de Seguros, Campo Grande/MS.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#4A4D51">
+<link rel="icon" href="img/icone-192.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header class="topo">
+  <img src="img/logo-horizontal.svg" alt="Imperatriz Corretora de Seguros · 35 anos" class="logo">
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Cotação de seguro auto</h1>
+    <p>Leva uns 3 minutos. No final, o botão abre o WhatsApp com tudo preenchido. É só enviar.</p>
+  </section>
+
+  <form id="form" novalidate>
+
+    <!-- 1 · segurado -->
+    <section class="bloco">
+      <div class="bloco-cab"><span class="num">1</span><div><h2>Seus dados</h2><p>De quem vai contratar o seguro.</p></div></div>
+
+      <label class="campo"><span>Nome completo</span>
+        <input name="s_nome" autocomplete="name" required></label>
+      <div class="dupla">
+        <label class="campo"><span>CPF</span>
+          <input name="s_cpf" inputmode="numeric" data-mask="cpf" placeholder="Só números" required></label>
+        <label class="campo"><span>Data de nascimento</span>
+          <input name="s_nasc" inputmode="numeric" data-mask="data" placeholder="dd/mm/aaaa" required></label>
+      </div>
+      <label class="campo"><span>Estado civil</span>
+        <select name="s_civil" required>
+          <option value="">Selecione</option>
+          <option>Solteiro(a)</option>
+          <option>Casado(a) ou união estável</option>
+          <option>Divorciado(a) ou separado(a)</option>
+          <option>Viúvo(a)</option>
+        </select></label>
+      <label class="campo"><span>Profissão</span>
+        <input name="s_prof" required></label>
+      <label class="campo"><span>CEP de onde mora</span>
+        <input name="s_cep" inputmode="numeric" data-mask="cep" placeholder="00000-000" autocomplete="postal-code" required>
+        <small class="cidade" data-cidade-de="s_cep"></small></label>
+    </section>
+
+    <!-- 2 · condutor -->
+    <section class="bloco">
+      <div class="bloco-cab"><span class="num">2</span><div><h2>Quem dirige</h2><p>O principal condutor é quem usa o carro na maior parte do tempo.</p></div></div>
+
+      <fieldset class="pergunta">
+        <legend>O principal condutor será você mesmo?</legend>
+        <div class="opcoes duas">
+          <label class="op"><input type="radio" name="c_mesmo" value="sim" required><span>Sim</span></label>
+          <label class="op"><input type="radio" name="c_mesmo" value="nao"><span>Não, outra pessoa</span></label>
+        </div>
+      </fieldset>
+
+      <div id="condutor" class="sub" hidden>
+        <label class="campo"><span>Nome completo do condutor</span>
+          <input name="c_nome" data-req-condutor></label>
+        <div class="dupla">
+          <label class="campo"><span>CPF</span>
+            <input name="c_cpf" inputmode="numeric" data-mask="cpf" placeholder="Só números" data-req-condutor></label>
+          <label class="campo"><span>Data de nascimento</span>
+            <input name="c_nasc" inputmode="numeric" data-mask="data" placeholder="dd/mm/aaaa" data-req-condutor></label>
+        </div>
+        <label class="campo"><span>Estado civil</span>
+          <select name="c_civil" data-req-condutor>
+            <option value="">Selecione</option>
+            <option>Solteiro(a)</option>
+            <option>Casado(a) ou união estável</option>
+            <option>Divorciado(a) ou separado(a)</option>
+            <option>Viúvo(a)</option>
+          </select></label>
+        <label class="campo"><span>Profissão</span>
+          <input name="c_prof" data-req-condutor></label>
+        <label class="campo"><span>O que essa pessoa é sua?</span>
+          <select name="c_rel" data-req-condutor>
+            <option value="">Selecione</option>
+            <option>Cônjuge</option>
+            <option>Filho(a)</option>
+            <option>Pai ou mãe</option>
+            <option>Irmão(ã)</option>
+            <option>Funcionário(a)</option>
+            <option>Outro</option>
+          </select></label>
+      </div>
+
+      <fieldset class="pergunta">
+        <legend>Quer cobertura para eventuais condutores entre 18 e 25 anos?</legend>
+        <p class="dica">Ex.: filho, sobrinho ou outra pessoa nessa idade que pode pegar o carro de vez em quando.</p>
+        <div class="opcoes duas">
+          <label class="op"><input type="radio" name="jovem" value="Sim" required><span>Sim</span></label>
+          <label class="op"><input type="radio" name="jovem" value="Não"><span>Não</span></label>
+        </div>
+      </fieldset>
+    </section>
+
+    <!-- 3 · veículo -->
+    <section class="bloco">
+      <div class="bloco-cab"><span class="num">3</span><div><h2>O carro</h2><p>Se preferir, mande a foto do documento (CRLV) na conversa.</p></div></div>
+
+      <label class="check"><input type="checkbox" id="foto-doc" name="foto_doc"><span>Vou mandar a foto do documento do carro no WhatsApp</span></label>
+
+      <div id="veiculo">
+        <label class="campo"><span>Placa ou chassi</span>
+          <input name="v_placa" autocapitalize="characters" placeholder="ABC1D23" data-req-veiculo></label>
+        <label class="campo"><span>Marca e modelo</span>
+          <input name="v_modelo" placeholder="Ex.: Chevrolet Onix LT 1.0 Turbo" data-req-veiculo></label>
+        <div class="dupla">
+          <label class="campo"><span>Ano de fabricação</span>
+            <input name="v_fab" inputmode="numeric" maxlength="4" placeholder="2024" data-req-veiculo></label>
+          <label class="campo"><span>Ano do modelo</span>
+            <input name="v_mod" inputmode="numeric" maxlength="4" placeholder="2025" data-req-veiculo></label>
+        </div>
+      </div>
+
+      <fieldset class="pergunta">
+        <legend>É zero km?</legend>
+        <div class="opcoes duas">
+          <label class="op"><input type="radio" name="v_zero" value="Sim" required><span>Sim</span></label>
+          <label class="op"><input type="radio" name="v_zero" value="Não"><span>Não</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="pergunta">
+        <legend>O carro tem algum destes?</legend>
+        <div class="opcoes">
+          <label class="op"><input type="checkbox" name="v_extra" value="Financiado / alienado"><span>Financiado</span></label>
+          <label class="op"><input type="checkbox" name="v_extra" value="Kit gás"><span>Kit gás</span></label>
+          <label class="op"><input type="checkbox" name="v_extra" value="Blindado"><span>Blindagem</span></label>
+        </div>
+      </fieldset>
+    </section>
+
+    <!-- 4 · uso e garagem -->
+    <section class="bloco">
+      <div class="bloco-cab"><span class="num">4</span><div><h2>Uso e garagem</h2><p>Estas respostas mudam bastante o preço. Responda como é no dia a dia.</p></div></div>
+
+      <label class="check"><input type="checkbox" id="mesmo-cep" checked><span>O carro dorme no mesmo CEP de onde eu moro</span></label>
+      <label class="campo" id="campo-pernoite" hidden><span>CEP onde o carro dorme</span>
+        <input name="p_cep" inputmode="numeric" data-mask="cep" placeholder="00000-000">
+        <small class="cidade" data-cidade-de="p_cep"></small></label>
+
+      <fieldset class="pergunta">
+        <legend>Tipo de residência</legend>
+        <div class="opcoes">
+          <label class="op"><input type="radio" name="g_res_tipo" value="Casa" required><span>Casa</span></label>
+          <label class="op"><input type="radio" name="g_res_tipo" value="Casa em condomínio"><span>Casa em condomínio</span></label>
+          <label class="op"><input type="radio" name="g_res_tipo" value="Apartamento"><span>Apartamento</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="pergunta">
+        <legend>Garagem onde mora</legend>
+        <div class="opcoes">
+          <label class="op"><input type="radio" name="g_res" value="Com portão eletrônico" required><span>Com portão eletrônico</span></label>
+          <label class="op"><input type="radio" name="g_res" value="Com portão manual"><span>Com portão manual</span></label>
+          <label class="op"><input type="radio" name="g_res" value="Não tem garagem"><span>Não tem garagem</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="pergunta">
+        <legend>Garagem no trabalho</legend>
+        <div class="opcoes">
+          <label class="op"><input type="radio" name="g_trab" value="Sim" required><span>Sim</span></label>
+          <label class="op"><input type="radio" name="g_trab" value="Não"><span>Não</span></label>
+          <label class="op"><input type="radio" name="g_trab" value="Não usa o carro para ir ao trabalho"><span>Não vou de carro / não trabalho</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="pergunta">
+        <legend>Garagem no local de estudo</legend>
+        <div class="opcoes">
+          <label class="op"><input type="radio" name="g_est" value="Sim" required><span>Sim</span></label>
+          <label class="op"><input type="radio" name="g_est" value="Não"><span>Não</span></label>
+          <label class="op"><input type="radio" name="g_est" value="Não estuda"><span>Não estudo</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="pergunta">
+        <legend>Tipo de uso do carro</legend>
+        <div class="opcoes duas">
+          <label class="op"><input type="radio" name="uso" value="Particular" required><span>Particular</span></label>
+          <label class="op"><input type="radio" name="uso" value="Profissional"><span>Profissional</span></label>
+          <label class="op"><input type="radio" name="uso" value="Táxi"><span>Táxi</span></label>
+          <label class="op"><input type="radio" name="uso" value="Motorista de app"><span>Motorista de app</span></label>
+        </div>
+        <p class="dica"><b>Particular:</b> passeio e ida e volta do trabalho. <b>Profissional:</b> o carro é ferramenta de trabalho (visitar clientes, levar mercadoria etc.).</p>
+      </fieldset>
+
+      <fieldset class="pergunta">
+        <legend>Quanto o carro roda, em média?</legend>
+        <div class="opcoes coluna">
+          <label class="op"><input type="radio" name="km" value="Até 15 km/dia ou 500 km/mês" required><span>Até 15 km/dia ou 500 km/mês</span></label>
+          <label class="op"><input type="radio" name="km" value="Entre 15 e 50 km/dia ou entre 500 e 1.500 km/mês"><span>Entre 15 e 50 km/dia ou entre 500 e 1.500 km/mês</span></label>
+          <label class="op"><input type="radio" name="km" value="Mais de 50 km/dia ou mais de 1.500 km/mês"><span>Mais de 50 km/dia ou mais de 1.500 km/mês</span></label>
+        </div>
+      </fieldset>
+    </section>
+
+    <!-- 5 · seguro atual -->
+    <section class="bloco">
+      <div class="bloco-cab"><span class="num">5</span><div><h2>Seguro atual</h2><p>Quem já tem seguro costuma ter desconto de bônus. Não perca o seu.</p></div></div>
+
+      <fieldset class="pergunta">
+        <legend>Esse carro já tem seguro hoje?</legend>
+        <div class="opcoes duas">
+          <label class="op"><input type="radio" name="seg" value="sim" required><span>Sim</span></label>
+          <label class="op"><input type="radio" name="seg" value="nao"><span>Não</span></label>
+        </div>
+      </fieldset>
+
+      <div id="seguro" class="sub" hidden>
+        <div class="dupla">
+          <label class="campo"><span>Seguradora</span>
+            <input name="seg_cia" placeholder="Ex.: Porto" data-req-seguro></label>
+          <label class="campo"><span>Vence em</span>
+            <input name="seg_venc" inputmode="numeric" data-mask="data" placeholder="dd/mm/aaaa" data-req-seguro></label>
+        </div>
+        <fieldset class="pergunta">
+          <legend>Teve sinistro (usou o seguro) no último ano?</legend>
+          <div class="opcoes duas">
+            <label class="op"><input type="radio" name="seg_sin" value="Sim" data-req-seguro><span>Sim</span></label>
+            <label class="op"><input type="radio" name="seg_sin" value="Não"><span>Não</span></label>
+          </div>
+        </fieldset>
+        <p class="dica destaque">📎 Se puder, mande também a foto da apólice atual na conversa.</p>
+      </div>
+
+      <label class="campo"><span>Quer comentar algo? <em>(opcional)</em></span>
+        <textarea name="obs" rows="3" placeholder="Ex.: quero carro reserva de 15 dias"></textarea></label>
+    </section>
+
+    <p id="erro" class="erro" role="alert" hidden></p>
+
+    <button type="submit" class="enviar">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3c-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.8c.1.2 1.9 2.9 4.6 4 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3Z"/></svg>
+      Enviar pelo WhatsApp
+    </button>
+    <button type="button" id="copiar" class="copiar">Prefiro copiar o texto</button>
+
+    <p class="lgpd">🔒 Seus dados não ficam salvos nesta página. Eles vão direto para o WhatsApp da Imperatriz e são usados só para fazer a sua cotação.</p>
+  </form>
+</main>
+
+<footer class="rodape">
+  Imperatriz Corretora de Seguros · Campo Grande/MS · desde 1991
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
